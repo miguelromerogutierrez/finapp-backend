@@ -25,6 +25,8 @@ class Transaction(
 class Account(
   var alias: String,
   var bankName: String,
+  var amount: BigDecimal,
+  var type: AccountTypes,
 
   @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator::class, property = "id")
   @JsonIdentityReference(alwaysAsId = true)

@@ -13,12 +13,18 @@ interface TransactionRepository : JpaRepository<Transaction, Long> {
 
   @Query("FROM Transaction WHERE account_id = :accountId")
   fun findAllByAccountId(@Param("accountId") accountId: Long) : List<Transaction>
+
 }
 
 @Repository
-interface AccountRepository : JpaRepository<Account, Long> {}
+interface AccountRepository : JpaRepository<Account, Long> {
+
+  @Query("FROM Account WHERE user_id = :userId")
+  fun findAllByUserId(@Param("userId") userId: Long) : List<Account>
+}
 
 @Repository
 interface UserRepository : JpaRepository<User, Long> {
-    fun findByEmail(email: String): User?
+  @Query("FROM User WHERE email = :email")
+  fun findByEmail(@Param("email") email: String): User?
 }
